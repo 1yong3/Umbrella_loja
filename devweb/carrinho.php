@@ -1,7 +1,38 @@
 <?php
 session_start();
 
-// REMOVER 
+// proteção de acesso
+if (!isset($_SESSION['email'])) {
+    header("Location: login.php");
+    exit();
+}
+
+// inicializa carrinho
+if (!isset($_SESSION['carrinho'])) {
+    $_SESSION['carrinho'] = [];
+}
+
+// produtos
+$produtos = [
+    1 => ["id" => 1, "nome" => "Ammo", "preco" => 350],
+    2 => ["id" => 2, "nome" => "Caixa", "preco" => 150],
+    3 => ["id" => 3, "nome" => "Chave Acesso", "preco" => 200],
+    4 => ["id" => 4, "nome" => "Cartao Acesso", "preco" => 300],
+    5 => ["id" => 5, "nome" => "Heal Spray", "preco" => 900],
+    6 => ["id" => 6, "nome" => "Caneta", "preco" => 500],
+    7 => ["id" => 7, "nome" => "Relógio", "preco" => 400],
+    8 => ["id" => 8, "nome" => "Launcher", "preco" => 1000]
+];
+
+// adicionar produto
+if (isset($_GET['add'])) {
+    $id = $_GET['add'];
+    $_SESSION['carrinho'][] = $id;
+    header("Location: carrinho.php");
+    exit();
+}
+
+// remover produto
 if (isset($_GET['remover'])) {
     $idRemover = $_GET['remover'];
 
@@ -16,35 +47,15 @@ if (isset($_GET['remover'])) {
     exit();
 }
 
-// proteção de acesso
-if (!isset($_SESSION['email'])) {
-    header("Location: login.php");
-    exit();
-}
-
-// inicializa carrinho
-if (!isset($_SESSION['carrinho'])) {
-    $_SESSION['carrinho'] = [];
-}
-
-$produtos = [
-    1 => ["id", "nome" => "Ammo", "preco" => 350,],
-    2 => ["id" => 2, "nome" => "Caixa", "preco" => 150,],
-    3 => ["id" => 3, "nome" => "Chave Acesso", "preco" => 200,],
-    4 => ["id" => 4, "nome" => "Cartao Acesso", "preco" => 300,],
-    5 => ["id" => 5, "nome" => "Heal Spray", "preco" => 900,],
-    6 => ["id" => 6, "nome" => "Caneta", "preco" => 500,],
-    7 => ["id" => 7, "nome" => "Relógio", "preco" => 400,],
-    8 => ["id" => 8, "nome" => "Laucher", "preco" => 1000,]
-];
-
-
-// adicionar produto
-if (isset($_GET['add'])) {
-    $id = $_GET['add'];
-    $_SESSION['carrinho'][] = $id;
-    header("Location: carrinho.php");
-    exit();
+// finalizar compra
+$mensagem = "";
+if (isset($_POST['finalizar'])) {
+    if (!empty($_SESSION['carrinho'])) {
+        $_SESSION['carrinho'] = []; // limpa carrinho
+        $mensagem = " Compra finalizada com sucesso!";
+    } else {
+        $mensagem = " Seu carrinho está vazio!";
+    }
 }
 ?>
 
@@ -62,6 +73,10 @@ if (isset($_GET['add'])) {
     <h2>Seu Carrinho</h2>
 
     <?php
+    if ($mensagem != "") {
+        echo "<p class='mensagem'>$mensagem</p>";
+    }
+
     $total = 0;
 
     if (empty($_SESSION['carrinho'])) {
@@ -77,9 +92,7 @@ if (isset($_GET['add'])) {
                 echo "<strong>{$produto['nome']}</strong><br>";
                 echo "R$ " . number_format($produto['preco'], 2, ',', '.');
 
-                // REMOVER 
                 echo "<br><a href='?remover=$id'>Remover</a>";
-
                 echo "</div>";
 
                 $total += $produto['preco'];
@@ -89,8 +102,19 @@ if (isset($_GET['add'])) {
         echo "<div class='total'>";
         echo "Total: R$ " . number_format($total, 2, ',', '.');
         echo "</div>";
+
+        // BOTÃO FINALIZAR COMPRA
+        echo "
+        <form method='POST'>
+            <button type='submit' name='finalizar' class='btn-finalizar'>
+                Finalizar Compra
+            </button>
+        </form>
+        ";
     }
     ?>
+
+    <br>
     <a href="dashboard.php"> <= Voltar para produtos</a>
 </div>
 

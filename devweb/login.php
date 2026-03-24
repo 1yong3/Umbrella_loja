@@ -12,9 +12,9 @@
         <form action="" method="POST">
             <input type="email" name="email" placeholder="e-mail" value="<?php echo $email_cookie ?? ''; ?>" required>
             <input type="password" name="senha" placeholder="senha" required>
-            <label>
+    <label class="checkbox-lembrar">
                 <input type="checkbox" name="lembrar"> Lembre-me
-            </label>
+     </label>
             <button type="submit">Entrar</button>
         </form>
     </div>
