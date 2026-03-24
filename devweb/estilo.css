@@ -1,0 +1,49 @@
+ body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+
+            background: url('img/umbrella2_bg.jpg') no-repeat center center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(0,0,0,0.6);
+            padding: 40px;
+            border-radius: 15px;
+        }
+
+        button {
+            display: block;
+            width: 200px;
+            margin: 10px auto;
+            padding: 15px;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .login {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .mercado {
+            background-color: #2196F3;
+            color: white;
+        }
+
+        .desativado {
+            background-color: gray;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+        .welc{
+            color: white;
+        }
+      

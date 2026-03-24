@@ -1,0 +1,56 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background: url('img/umbrella2_bg.jpg') no-repeat center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    overflow: hidden; 
+}
+.container {
+    text-align: center;
+    background: rgba(0,0,0,0.6);
+    padding: 30px;
+    border-radius: 15px;
+    width: 300px;
+    max-height: 80vh; 
+    box-sizing: border-box; 
+    color: white;
+
+    overflow-y: auto; 
+}
+
+.item {
+    background: rgba(255,255,255,0.1);
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 8px;
+}
+
+.total {
+    margin-top: 15px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #4CAF50;
+}
+
+.vazio {
+    color: #ccc;
+    font-size: 18px;
+}
+
+a {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 15px;
+    background: #2196F3;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+}
+
+a:hover {
+    background: #1976D2;
+}

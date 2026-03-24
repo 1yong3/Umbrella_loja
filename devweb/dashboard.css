@@ -1,0 +1,45 @@
+body {
+    font-family: Arial;
+    background: url('img/umbrella2_bg.jpg') no-repeat center center/cover;
+    display: flex;
+    flex-direction: column;
+   
+}
+.produtos {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.topo {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.produto {
+    background: #fff;
+    text-align: center;
+}
+
+
+img {
+    width: 100%;
+}
+
+
+button {
+    margin-top: 10px;
+    padding: 10px;
+    border: none;
+    background: rgb(87, 2, 73);
+    color: white;
+    cursor: pointer;
+    width: 100%;
+}
+
+.welc {
+    color: white;
+}
